@@ -1,0 +1,2 @@
+2025-12-23 15:16:14,707 - INFO - [MainThread] - Loading faiss with AVX2 support.
+2025-12-23 15:16:14,731 - INFO - [MainThread] - Successfully loaded faiss with AVX2 support.

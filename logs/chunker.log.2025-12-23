@@ -1,0 +1,17 @@
+2025-12-23 14:35:13,429 - INFO - [MainThread] - Loading faiss with AVX2 support.
+2025-12-23 14:35:13,752 - INFO - [MainThread] - Successfully loaded faiss with AVX2 support.
+2025-12-23 14:35:14,423 - INFO - [MainThread] - HTTP Request: GET http://127.0.0.1:7863/gradio_api/startup-events "HTTP/1.1 200 OK"
+2025-12-23 14:35:14,731 - INFO - [MainThread] - HTTP Request: HEAD http://127.0.0.1:7863/ "HTTP/1.1 200 OK"
+2025-12-23 14:35:15,706 - INFO - [Thread-1 (version_check)] - HTTP Request: GET https://api.gradio.app/pkg-version "HTTP/1.1 200 OK"
+2025-12-23 14:36:14,344 - INFO - [AnyIO worker thread] - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-23 14:36:26,368 - INFO - [AnyIO worker thread] - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-23 14:36:35,955 - INFO - [AnyIO worker thread] - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-23 14:36:53,545 - INFO - [AnyIO worker thread] - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-23 14:37:06,279 - INFO - [AnyIO worker thread] - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-23 14:37:20,066 - INFO - [AnyIO worker thread] - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-23 14:37:28,999 - INFO - [AnyIO worker thread] - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-23 14:37:46,381 - INFO - [AnyIO worker thread] - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-23 14:37:55,414 - INFO - [AnyIO worker thread] - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-23 14:38:31,764 - INFO - [AnyIO worker thread] - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-23 14:39:03,610 - INFO - [AnyIO worker thread] - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-23 14:39:31,324 - INFO - [AnyIO worker thread] - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"

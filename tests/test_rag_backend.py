@@ -239,7 +239,7 @@ def test_question_answering(kb_name: str = DEFAULT_KB, question: str = None):
     
     # 如果没有提供问题，使用默认问题
     if question is None:
-        question = "请简要介绍一下知识库中的内容"
+        question = "如何修改密码"
     
     print(f"问题: {question}")
     print(f"使用的知识库: {kb_name}")
@@ -251,9 +251,9 @@ def test_question_answering(kb_name: str = DEFAULT_KB, question: str = None):
         for search_display, answer in process_question_with_reasoning(
             question=question,
             kb_name=kb_name,
-            use_search=False,  # 测试时关闭联网搜索，专注于本地知识库
-            use_table_format=False,
-            multi_hop=False,
+            use_search=True,  # 测试时关闭联网搜索，专注于本地知识库
+            use_table_format=True,
+            multi_hop=True,
             chat_history=None
         ):
             # 打印流式输出的状态
@@ -333,11 +333,11 @@ def main():
             test_questions = args.questions
         else:
             test_questions = [
-                "请简要介绍一下知识库中的内容",
-                "知识库中有哪些主要主题？"
+                "如何修改密码"
             ]
         
         for question in test_questions:
+            print(f"kb_name={kb_name}")
             test_question_answering(kb_name, question)
             print("\n" + "-"*60 + "\n")
     elif RUN_TEST_4_QA and args.skip_qa:

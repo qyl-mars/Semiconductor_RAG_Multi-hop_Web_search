@@ -29,14 +29,21 @@ class Config():
     batch_size = 10
     
     #LLM API 参数 - 用于 rag.py
+    # ali qwen
     llm_api_key = "sk-9cd7a8dd61214b52a869bd3af53a0a1d"  # 与embedding共用同一个key
     llm_base_url = "https://dashscope.aliyuncs.com/compatible-mode/v1"  # 与embedding共用同一个URL
     llm_model = "qwen-plus"  # 默认使用的LLM模型
 
+    """
+    # gpt
+    llm_api_key = "sk-VI3k06ySl6WOWU16o1uyb7yykSh3rKWBDXJNIfk6TsouHrP1"  # 与embedding共用同一个key
+    llm_base_url = "https://yibuapi.com/v1"  # 与embedding共用同一个URL
+    llm_model = "gpt-5.2-pro"  # 默认使用的LLM模型
+    #"""
 
     # 知识库配置
     kb_base_dir = "knowledge_bases"  # 知识库根目录
-    default_kb = "default"  # 默认知识库名称
+    default_kb = "aaa"  # 默认知识库名称
     
     # 输出目录配置 - 现在用作临时文件目录
     output_dir = "output_files"
@@ -51,6 +58,6 @@ class Config():
     rerank_top_k = None  # rerank 后返回的结果数量，None 表示返回所有重排序后的结果
     
     # 提示词配置
-    default_domain = "medical"  # 默认领域: "medical"（医疗）或 "semiconductor"（半导体）
+    default_domain = "semiconductor"  # 默认领域: "semiconductor"（半导体）
 
     #######################
