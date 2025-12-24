@@ -2,7 +2,7 @@ from typing import Optional
 from .llm_client import DeepSeekClient
 
 # 基本的回答生成
-def generate_answer_from_deepseek(question: str, system_prompt: str = "你是一名专业医疗助手，请根据背景知识回答问题。", background_info: Optional[str] = None) -> str:
+def generate_answer_from_deepseek(question: str, system_prompt: str = "你是一名专业半导体助手，请根据背景知识回答问题。", background_info: Optional[str] = None) -> str:
     deepseek_client = DeepSeekClient()
     user_prompt = f"问题：{question}"
     if background_info:

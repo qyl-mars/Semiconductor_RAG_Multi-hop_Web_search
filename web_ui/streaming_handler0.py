@@ -12,18 +12,6 @@ import traceback
 from typing import List
 
 # 修改以支持多知识库的流式响应函数
-"""
-是一个 Python 生成器（Generator），用于向前端（如 Gradio）流式输出数据。
-输入：用户问题、知识库名称、是否联网、是否多跳推理、对话历史。
-处理流程：
-历史增强：将最近 3 轮对话拼接到问题前。
-并行任务启动：尝试启动后台联网搜索。
-分支逻辑：
-分支 A (索引不存在)：直接使用联网搜索结果回答。
-分支 B (多跳推理)：调用 ReasoningRAG 类进行 Step-by-step 的推理。
-分支 C (简单检索)：做一次向量检索 ->生成本地答案。
-结果合并：如果联网搜索和本地检索都有结果，调用 LLM（Qwen-plus）将两者合并生成最终答案。
-"""
 def process_question_with_reasoning(question: str, kb_name: str = DEFAULT_KB, use_search: bool = True, use_table_format: bool = False, multi_hop: bool = False, chat_history: List = None):
     """增强版process_question，支持流式响应，实时显示检索和推理过程，支持多知识库和对话历史"""
     try:
@@ -46,14 +34,10 @@ def process_question_with_reasoning(question: str, kb_name: str = DEFAULT_KB, us
         # 初始状态
         search_result = "联网搜索进行中..." if use_search else "未启用联网搜索"
 
-        # 多跳推理
         if multi_hop:
             reasoning_status = f"正在准备对知识库 '{kb_name}' 进行多跳推理检索..."
             search_display = f"### 联网搜索结果\n{search_result}\n\n### 推理状态\n{reasoning_status}"
             yield search_display, "正在启动多跳推理流程..."
-            # 是在**“真正的最终答案”**出来之前，先用这两个临时内容去“占领”屏幕上的两个位置。
-            # search_display 显示在：左边/上方（状态框）
-            # 正在启动多跳推理流程..." 显示在：右边/上方（状态框）
         else:
             reasoning_status = f"正在准备对知识库 '{kb_name}' 进行向量检索..."
             search_display = f"### 联网搜索结果\n{search_result}\n\n### 检索状态\n{reasoning_status}"
@@ -65,22 +49,16 @@ def process_question_with_reasoning(question: str, kb_name: str = DEFAULT_KB, us
             if use_search:
                 search_future = executor.submit(get_search_background, question)
 
-        # 索引不存在，检查是否联网搜索
+        # 检查索引是否存在
         if not (os.path.exists(index_path) and os.path.exists(metadata_path)):
-            # 如果索引不存在，等待两网搜索结果，提前返回
+            # 如果索引不存在，提前返回
             if search_future:
                 # 等待搜索结果
                 search_result = "等待联网搜索结果..."
                 search_display = f"### 联网搜索结果\n{search_result}\n\n### 检索状态\n知识库 '{kb_name}' 中未找到索引"
                 yield search_display, "等待联网搜索结果..."
 
-                # search_result = search_future.result() or "未找到相关网络信息" #源代码修改
-                try:
-                    search_result = search_future.result()
-                except Exception as e:
-                    print(f"联网搜索出错: {e}")  # 打印后台日志
-                    search_result = "联网搜索失败"
-
+                search_result = search_future.result() or "未找到相关网络信息"
                 system_prompt = "你是一名半导体专家。请考虑对话历史并回答用户的问题。"
                 if use_table_format:
                     system_prompt += "请尽可能以Markdown表格的形式呈现结构化信息。"
@@ -88,13 +66,10 @@ def process_question_with_reasoning(question: str, kb_name: str = DEFAULT_KB, us
 
                 search_display = f"### 联网搜索结果\n{search_result}\n\n### 检索状态\n无法在知识库 '{kb_name}' 中进行本地检索（未找到索引）"
                 yield search_display, answer
-            # 索引不存在，且未启用联网搜索
             else:
                 yield f"知识库 '{kb_name}' 中未找到索引，且未启用联网搜索", "无法回答您的问题。请先上传文件到该知识库或启用联网搜索。"
-            # 因为本地知识库文件（索引）根本不存在，后续的“本地检索”逻辑没法跑了，所以处理完当前的“联网兜底”或“报错”后，必须立刻强制结束函数，不再往下执行。
             return
 
-        # 索引存在，开始向量检索
         # 开始流式处理
         current_answer = "正在分析您的问题..."
 

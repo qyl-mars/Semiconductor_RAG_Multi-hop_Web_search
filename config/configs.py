@@ -49,5 +49,8 @@ class Config():
     rerank_method = "llm"  # rerank 方法: "llm" 或 "text_similarity"
     rerank_batch_size = 5  # LLM rerank 的批量处理大小
     rerank_top_k = None  # rerank 后返回的结果数量，None 表示返回所有重排序后的结果
+    
+    # 提示词配置
+    default_domain = "medical"  # 默认领域: "medical"（医疗）或 "semiconductor"（半导体）
 
     #######################

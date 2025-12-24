@@ -4,7 +4,7 @@ from lxml import etree
 import chardet
 import jieba.analyse
 from ingest.text2vec import *
-from config import Config
+from gupao.config import Config
 
 def search_bing(query):
     """利用newbing搜索接口，用于检索与query相关的背景信息，作为检索内容
