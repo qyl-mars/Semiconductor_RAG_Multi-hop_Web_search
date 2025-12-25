@@ -13,7 +13,7 @@ import sys
 # 添加项目根目录到路径，以便导入模块
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from search.rerank import rerank, rerank_with_llm, rerank_with_text_similarity
+from search.rerank2 import rerank, rerank_with_llm, rerank_with_text_similarity
 from search.retriever import vector_search
 from kb.kb_paths import get_kb_paths
 from kb.kb_config import DEFAULT_KB

@@ -4,7 +4,7 @@ from functional import seq
 import numpy as np
 import torch.nn.functional as F  
 from torch import cosine_similarity
-from config import Config
+from config.configs import Config
 from openai import OpenAI
 
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"

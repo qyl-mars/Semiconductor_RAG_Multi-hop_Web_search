@@ -1,7 +1,7 @@
 from kb.kb_config import DEFAULT_KB
 from kb.kb_paths import get_kb_paths
 from concurrent.futures import ThreadPoolExecutor, TimeoutError
-from search.web_search import get_search_background
+from search.web_search import get_web_search_content
 import os
 from llm.answer_generator import generate_answer_from_deepseek
 from search.retriever import vector_search
@@ -63,11 +63,13 @@ def process_question_with_reasoning(question: str, kb_name: str = DEFAULT_KB, us
             search_future = None
             if use_search:
                 logger.info("正在启动联网搜索...")
-                search_future = executor.submit(get_search_background, question)
+                search_future = executor.submit(get_web_search_content, question)
 
             # 3.2 并行执行：主线程继续处理本地逻辑
 
             # --- 分支 A: 索引不存在 (纯联网兜底) ---
+            print(f"当前工作目录: {os.getcwd()}")
+            logger.info("index_path:{index_path}")
             if not (os.path.exists(index_path) and os.path.exists(metadata_path)):
                 if search_future:
                     # 状态反馈

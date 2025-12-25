@@ -4,7 +4,7 @@ from kb.kb_paths import  get_kb_paths
 import os
 from llm.answer_generator import generate_answer_from_deepseek
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from search.web_search import get_search_background
+from search.web_search import get_web_search_content
 from rag.pipeline import simple_generate_answer
 
 
@@ -25,12 +25,12 @@ def ask_question_parallel(question: str, kb_name: str = DEFAULT_KB, use_search: 
             futures = {}
 
             if use_search:
-                futures[executor.submit(get_search_background, question)] = "search"
+                futures[executor.submit(get_web_search_content, question)] = "search"
 
             if os.path.exists(index_path):
                 if multi_hop:
                     # 使用多跳推理
-                    futures[executor.submit(get_search_background, question, kb_name, use_table_format)] = "rag"
+                    futures[executor.submit(get_web_search_content, question, kb_name, use_table_format)] = "rag"
                 else:
                     # 使用简单向量检索
                     futures[executor.submit(simple_generate_answer, question, kb_name, use_table_format)] = "simple"
@@ -46,7 +46,7 @@ def ask_question_parallel(question: str, kb_name: str = DEFAULT_KB, use_search: 
 
         # 如果同时有搜索和本地结果，合并它们
         if search_background and local_answer:
-            system_prompt = "你是一名医疗专家，请整合网络搜索和本地知识库提供全面的解答。"
+            system_prompt = "你是一名半导体专家，请整合网络搜索和本地知识库提供全面的解答。"
 
             table_instruction = ""
             if use_table_format:
@@ -88,7 +88,7 @@ def ask_question_parallel(question: str, kb_name: str = DEFAULT_KB, use_search: 
             return local_answer
         elif search_background:
             # 仅从搜索结果生成答案
-            system_prompt = "你是一名医疗专家。"
+            system_prompt = "你是一名半导体专家。"
             if use_table_format:
                 system_prompt += "请尽可能以Markdown表格的形式呈现结构化信息。"
             return generate_answer_from_deepseek(question, system_prompt=system_prompt, background_info=f"[联网搜索结果]：{search_background}")

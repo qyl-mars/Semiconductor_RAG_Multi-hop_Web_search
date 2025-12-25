@@ -1,7 +1,7 @@
 from kb.kb_config import  DEFAULT_KB
 from kb.kb_paths import  get_kb_paths
 from concurrent.futures import ThreadPoolExecutor
-from search.web_search import get_search_background
+from search.web_search import get_web_search_content
 import os
 from llm.answer_generator import generate_answer_from_deepseek
 from search.retriever import vector_search
@@ -65,7 +65,7 @@ def process_question_with_reasoning(question: str, kb_name: str = DEFAULT_KB, us
         search_future = None
         with ThreadPoolExecutor(max_workers=1) as executor:
             if use_search:
-                search_future = executor.submit(get_search_background, question)
+                search_future = executor.submit(get_web_search_content, question)
 
             # 索引不存在，检查是否联网搜索
             if not (os.path.exists(index_path) and os.path.exists(metadata_path)):

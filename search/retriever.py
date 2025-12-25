@@ -2,7 +2,7 @@ import json
 import numpy as np
 import faiss
 from llm.embedding_client import vectorize_query
-from search.rerank import rerank
+from search.rerank2 import rerank
 
 # 简单的向量搜索，用于基本对比
 def vector_search(query, index_path, metadata_path, limit, use_rerank=False, rerank_method="llm", rerank_top_k=None):

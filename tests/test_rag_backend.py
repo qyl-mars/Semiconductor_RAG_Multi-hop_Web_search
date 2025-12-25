@@ -33,11 +33,13 @@ from web_ui.streaming_handler import process_question_with_reasoning
 RUN_TEST_1_UPLOAD = False            # 测试1：仅上传文件到知识库目录
 RUN_TEST_2_PARSE = False             # 测试2：仅解析文件内容
 RUN_TEST_3_VECTORIZE = False         # 测试3：分块 + 向量化 + 建索引
-RUN_TEST_4_QA = True               # 测试4：问答流程（基于已建索引）
+RUN_TEST_4_QA = True                 # 测试4：问答流程（基于已建索引）
 
 
 class FileObj:
-    """简单的文件对象包装类，用于模拟上传的文件"""
+    """简单的文件对象包装类
+
+    ，用于模拟上传的文件"""
     def __init__(self, file_path: str):
         self.name = file_path
         self.path = file_path
@@ -253,7 +255,7 @@ def test_question_answering(kb_name: str = DEFAULT_KB, question: str = None):
             kb_name=kb_name,
             use_search=True,  # 测试时关闭联网搜索，专注于本地知识库
             use_table_format=True,
-            multi_hop=True,
+            multi_hop=False,
             chat_history=None
         ):
             # 打印流式输出的状态

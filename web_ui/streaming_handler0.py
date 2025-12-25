@@ -1,7 +1,7 @@
 from kb.kb_config import  DEFAULT_KB
 from kb.kb_paths import  get_kb_paths
 from concurrent.futures import ThreadPoolExecutor
-from search.web_search import get_search_background
+from search.web_search import get_web_search_content
 import os
 from llm.answer_generator import generate_answer_from_deepseek
 from search.retriever import vector_search
@@ -47,9 +47,10 @@ def process_question_with_reasoning(question: str, kb_name: str = DEFAULT_KB, us
         search_future = None
         with ThreadPoolExecutor(max_workers=1) as executor:
             if use_search:
-                search_future = executor.submit(get_search_background, question)
+                search_future = executor.submit(get_web_search_content, question)
 
         # 检查索引是否存在
+        print(f"index_path: {index_path}")
         if not (os.path.exists(index_path) and os.path.exists(metadata_path)):
             # 如果索引不存在，提前返回
             if search_future:
@@ -124,7 +125,7 @@ def process_question_with_reasoning(question: str, kb_name: str = DEFAULT_KB, us
                     background_chunks = "\n\n".join([f"[相关信息 { i +1}]: {result['chunk']}"
                                                      for i, result in enumerate(search_results)])
 
-                    system_prompt = "你是一名医疗专家。基于提供的背景信息和对话历史回答用户的问题。"
+                    system_prompt = "你是一名半导体专家。基于提供的背景信息和对话历史回答用户的问题。"
                     if use_table_format:
                         system_prompt += "请尽可能以Markdown表格的形式呈现结构化信息。"
 
@@ -166,7 +167,7 @@ def process_question_with_reasoning(question: str, kb_name: str = DEFAULT_KB, us
                     yield f"### 联网搜索结果\n{search_result}\n\n### 知识库: {kb_name}\n### 检索状态\n{status_text}", current_answer
 
                 # 合并结果
-                system_prompt = "你是一名医疗专家，请整合网络搜索和本地知识库提供全面的解答。请考虑对话历史。"
+                system_prompt = "你是一名半导体专家，请整合网络搜索和本地知识库提供全面的解答。请考虑对话历史。"
 
                 if use_table_format:
                     system_prompt += "请尽可能以Markdown表格的形式呈现结构化信息。"

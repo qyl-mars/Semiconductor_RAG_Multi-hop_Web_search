@@ -15,7 +15,7 @@ def multi_hop_generate_answer(query: str, kb_name: str, use_table_format: bool =
         metadata_path=kb_paths["metadata_path"],
         max_hops=3,
         initial_candidates=5,
-        refined_candidates=3,
+        refined_cFandidates=3,
         reasoning_model=Config.llm_model,
         verbose=True
     )

@@ -13,3 +13,44 @@
 2025-12-24 16:37:00,693 - INFO - [MainThread] - Retrying request to /chat/completions in 0.386456 seconds
 2025-12-24 16:37:06,110 - INFO - [MainThread] - Retrying request to /chat/completions in 0.988853 seconds
 2025-12-24 16:37:28,012 - INFO - [MainThread] - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-24 17:04:20,494 - INFO - [MainThread] - Loading faiss with AVX2 support.
+2025-12-24 17:04:20,515 - INFO - [MainThread] - Successfully loaded faiss with AVX2 support.
+2025-12-24 17:05:22,572 - INFO - [MainThread] - 正在启动联网搜索...
+2025-12-24 17:05:22,575 - INFO - [MainThread] - index_path:{index_path}
+2025-12-24 17:05:37,269 - INFO - [MainThread] - Retrying request to /chat/completions in 0.456941 seconds
+2025-12-24 17:05:42,771 - INFO - [MainThread] - Retrying request to /chat/completions in 0.897772 seconds
+2025-12-24 17:11:18,043 - INFO - [MainThread] - Loading faiss with AVX2 support.
+2025-12-24 17:11:18,061 - INFO - [MainThread] - Successfully loaded faiss with AVX2 support.
+2025-12-24 17:12:37,265 - INFO - [MainThread] - 正在启动联网搜索...
+2025-12-24 17:16:18,738 - INFO - [MainThread] - Loading faiss with AVX2 support.
+2025-12-24 17:16:18,769 - INFO - [MainThread] - Successfully loaded faiss with AVX2 support.
+2025-12-24 17:17:44,762 - INFO - [MainThread] - 正在启动联网搜索...
+2025-12-24 17:17:44,764 - INFO - [MainThread] - index_path:{index_path}
+2025-12-24 17:17:55,160 - INFO - [MainThread] - Retrying request to /chat/completions in 0.395731 seconds
+2025-12-24 17:18:00,590 - INFO - [MainThread] - Retrying request to /chat/completions in 0.838371 seconds
+2025-12-24 17:18:26,610 - INFO - [MainThread] - Loading faiss with AVX2 support.
+2025-12-24 17:18:26,629 - INFO - [MainThread] - Successfully loaded faiss with AVX2 support.
+2025-12-24 17:19:08,400 - INFO - [MainThread] - Loading faiss with AVX2 support.
+2025-12-24 17:19:08,418 - INFO - [MainThread] - Successfully loaded faiss with AVX2 support.
+2025-12-24 17:20:10,310 - INFO - [MainThread] - 正在启动联网搜索...
+2025-12-24 17:20:10,312 - INFO - [MainThread] - index_path:{index_path}
+2025-12-24 17:20:56,637 - INFO - [MainThread] - Retrying request to /chat/completions in 0.499955 seconds
+2025-12-24 17:21:02,166 - INFO - [MainThread] - Retrying request to /chat/completions in 0.793484 seconds
+2025-12-24 17:23:51,059 - INFO - [MainThread] - Loading faiss with AVX2 support.
+2025-12-24 17:23:51,079 - INFO - [MainThread] - Successfully loaded faiss with AVX2 support.
+2025-12-24 17:27:05,655 - INFO - [MainThread] - 正在启动联网搜索...
+2025-12-24 17:27:12,054 - INFO - [MainThread] - index_path:{index_path}
+2025-12-24 17:31:16,406 - INFO - [MainThread] - Retrying request to /chat/completions in 0.418930 seconds
+2025-12-24 17:31:21,871 - INFO - [MainThread] - Retrying request to /chat/completions in 0.909637 seconds
+2025-12-24 17:42:56,060 - INFO - [MainThread] - 正在启动联网搜索...
+2025-12-24 17:42:56,065 - INFO - [MainThread] - index_path:{index_path}
+2025-12-24 17:43:03,279 - INFO - [MainThread] - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-24 17:44:03,515 - INFO - [MainThread] - Loading faiss with AVX2 support.
+2025-12-24 17:44:03,941 - INFO - [MainThread] - Successfully loaded faiss with AVX2 support.
+2025-12-24 17:46:09,875 - INFO - [MainThread] - Retrying request to /chat/completions in 0.377093 seconds
+2025-12-24 17:46:15,277 - INFO - [MainThread] - Retrying request to /chat/completions in 0.981333 seconds
+2025-12-24 18:11:02,901 - INFO - [MainThread] - Loading faiss with AVX2 support.
+2025-12-24 18:11:02,920 - INFO - [MainThread] - Successfully loaded faiss with AVX2 support.
+2025-12-24 18:11:12,461 - INFO - [MainThread] - Retrying request to /chat/completions in 0.401919 seconds
+2025-12-24 18:11:17,883 - INFO - [MainThread] - Retrying request to /chat/completions in 0.914413 seconds
+2025-12-24 18:11:34,693 - INFO - [MainThread] - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"

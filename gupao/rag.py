@@ -12,7 +12,7 @@ import gradio as gr
 import fitz  # PyMuPDF
 import chardet  # 用于自动检测编码
 import traceback
-from config import Config  # 导入配置文件
+from config.configs import Config  # 导入配置文件
 
 # 解决503报错，关闭代理
 import os

@@ -14,3 +14,5 @@ faiss-cpu
 PyMuPDF
 openai
 llama-index
+tavily-python
+#duckduckgo-search

@@ -41,6 +41,16 @@ class Config():
     llm_model = "gpt-5.2-pro"  # 默认使用的LLM模型
     #"""
 
+    # tavily ，联网搜索
+    tavily_api_key = "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"
+
+    # Rerank模型
+    # 硅基流动
+    rerank_model = "BAAI/bge-reranker-v2-m3"
+    #其他可选：netease-youdao/bce-reranker-base_v1 \ Qwen/Qwen3-Reranker-4B \Qwen/Qwen3-Reranker-8B
+    # Qwen/Qwen3-Reranker-0.6B / Pro/BAAI/bge-reranker-v2-m3
+    rerank_api_kay= "sk-dentfpwhfygjdkjhwgltshwiltqcfrvmmkajxvskyfcmgzmr"
+
     # 知识库配置
     kb_base_dir = "knowledge_bases"  # 知识库根目录
     default_kb = "aaa"  # 默认知识库名称
