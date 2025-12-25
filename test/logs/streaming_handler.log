@@ -1,0 +1,8 @@
+2025-12-25 17:37:08,673 - INFO - [MainThread] - 正在启动联网搜索...
+2025-12-25 17:37:10,881 - INFO - [ThreadPoolExecutor-0_0] - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:37:11,266 - INFO - [ThreadPoolExecutor-0_0] - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:37:22,153 - INFO - [MainThread] - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-25 17:46:56,429 - INFO - [MainThread] - 正在启动联网搜索...
+2025-12-25 17:46:58,087 - INFO - [ThreadPoolExecutor-0_0] - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:46:58,576 - INFO - [ThreadPoolExecutor-0_0] - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-25 17:47:10,069 - INFO - [MainThread] - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"

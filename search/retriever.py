@@ -1,56 +1,75 @@
 import json
 import numpy as np
 import faiss
+import os
 from llm.embedding_client import vectorize_query
-from search.rerank2 import rerank
 
-# 简单的向量搜索，用于基本对比
-def vector_search(query, index_path, metadata_path, limit, use_rerank=False, rerank_method="llm", rerank_top_k=None):
+
+def vector_search(query, index_path, metadata_path, limit=5):
     """
-    向量搜索函数，支持可选的 rerank 重排序
-    
+    基本向量搜索函数
     Args:
-        query: 查询文本
-        index_path: FAISS 索引文件路径
-        metadata_path: 元数据文件路径
-        limit: 初始检索返回的候选数量
-        use_rerank: 是否使用 rerank 重排序
-        rerank_method: rerank 方法，"llm" 或 "text_similarity"
-        rerank_top_k: rerank 后返回的结果数量，如果为 None 则返回所有重排序后的结果
-        
-    Returns:
-        检索结果列表，如果启用 rerank 则按相关性重排序
+        query: 用户问题
+        index_path: FAISS 索引路径
+        metadata_path: 元数据路径
+        limit: 返回数量 (由调用方控制，例如传入 50)
     """
+    # 1. 向量化 Query
     query_vector = vectorize_query(query)
-    if query_vector.size == 0:
+
+    # 判空处理
+    if query_vector is None or (isinstance(query_vector, np.ndarray) and query_vector.size == 0):
+        print("Warning: Query vectorization failed.")
         return []
 
+    # FAISS 需要 float32 类型的二维数组
     query_vector = np.array(query_vector, dtype=np.float32).reshape(1, -1)
 
-    index = faiss.read_index(index_path)
+    # 2. 加载索引
+    if not os.path.exists(index_path):
+        print(f"Error: Index file not found at {index_path}")
+        return []
+
+    try:
+        index = faiss.read_index(index_path)
+    except Exception as e:
+        print(f"Error loading FAISS index: {e}")
+        return []
+
+    # 3. 加载元数据
+    if not os.path.exists(metadata_path):
+        print(f"Error: Metadata file not found at {metadata_path}")
+        return []
+
     try:
         with open(metadata_path, 'r', encoding='utf-8') as f:
             metadata = json.load(f)
     except UnicodeDecodeError:
-        print(f"警告：{metadata_path} 包含非法字符，使用 UTF-8 忽略错误重新加载")
+        print(f"警告：{metadata_path} 编码异常，尝试忽略错误读取...")
         with open(metadata_path, 'rb') as f:
             content = f.read().decode('utf-8', errors='ignore')
             metadata = json.loads(content)
+    except Exception as e:
+        print(f"Error loading metadata: {e}")
+        return []
 
-    # 初始向量检索：如果启用 rerank，检索更多候选以便重排序
-    initial_limit = limit * 2 if use_rerank else limit
-    D, I = index.search(query_vector, initial_limit)
-    results = [metadata[i] for i in I[0] if i < len(metadata)]
-    
-    # 如果启用 rerank，对结果进行重排序
-    if use_rerank and results:
-        print(f"对 {len(results)} 个候选结果进行 rerank 重排序...")
-        results = rerank(query, results, method=rerank_method, top_k=rerank_top_k or limit)
-        print(f"rerank 完成，返回 {len(results)} 个结果")
-    
-    # 如果未启用 rerank，直接返回前 limit 个结果
-    if not use_rerank:
-        results = results[:limit]
-    
+    # 4. 执行搜索
+    # 这里的 limit 是关键，streaming_handler 会传入 50
+    try:
+        D, I = index.search(query_vector, limit)
+    except Exception as e:
+        print(f"Error during FAISS search: {e}")
+        return []
+
+    # 5. 提取结果
+    results = []
+    # I[0] 是索引 ID 列表，D[0] 是距离/分数列表
+    for i in I[0]:
+        if i < len(metadata):
+            # 确保返回的是完整的元数据对象
+            item = metadata[i]
+            # 可以在这里把 FAISS 的距离分数也带上，方便调试，但不是必须的
+            # item['vector_score'] = float(D[0][idx])
+            results.append(item)
+
     return results
-

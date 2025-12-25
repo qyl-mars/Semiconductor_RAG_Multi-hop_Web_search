@@ -1,10 +1,10 @@
 import gradio as gr
 import os
-from kb.kb_config import KB_BASE_DIR,DEFAULT_KB,OUTPUT_DIR
+from kb.kb_config import KB_BASE_DIR,DEFAULT_KB
 from kb.kb_manager import get_knowledge_bases,create_knowledge_base,delete_knowledge_base,\
     get_kb_files
 from ingest.ingest_service import batch_upload_to_kb
-from web_ui.streaming_handler import process_question_with_reasoning
+from rag.streaming_handler import process_question_with_reasoning
 
 
 

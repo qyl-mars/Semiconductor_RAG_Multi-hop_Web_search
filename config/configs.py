@@ -49,7 +49,7 @@ class Config():
     rerank_model = "BAAI/bge-reranker-v2-m3"
     #其他可选：netease-youdao/bce-reranker-base_v1 \ Qwen/Qwen3-Reranker-4B \Qwen/Qwen3-Reranker-8B
     # Qwen/Qwen3-Reranker-0.6B / Pro/BAAI/bge-reranker-v2-m3
-    rerank_api_kay= "sk-dentfpwhfygjdkjhwgltshwiltqcfrvmmkajxvskyfcmgzmr"
+    rerank_api_key= "sk-dentfpwhfygjdkjhwgltshwiltqcfrvmmkajxvskyfcmgzmr"
 
     # 知识库配置
     kb_base_dir = "knowledge_bases"  # 知识库根目录

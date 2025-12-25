@@ -23,11 +23,11 @@ if PROJECT_ROOT not in sys.path:
 
 from kb.kb_manager import get_knowledge_bases
 from kb.kb_config import KB_BASE_DIR, DEFAULT_KB, OUTPUT_DIR
-from ingest.ingest_service import process_and_index_files, process_single_file
+from ingest.ingest_service import process_single_file
 from ingest.chunker import semantic_chunk
 from ingest.vectorizer import vectorize_file
 from rag.indexer import build_faiss_index
-from web_ui.streaming_handler import process_question_with_reasoning
+from rag.streaming_handler import process_question_with_reasoning
 
 # 测试开关（通过修改这里的 True/False 来控制是否执行各个测试）
 RUN_TEST_1_UPLOAD = False            # 测试1：仅上传文件到知识库目录
