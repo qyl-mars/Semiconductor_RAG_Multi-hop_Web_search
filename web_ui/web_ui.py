@@ -232,7 +232,7 @@ with gr.Blocks(title="半导体知识问答系统", theme=custom_theme, css=cust
                         )
                         upload_status = gr.Textbox(label="上传状态", interactive=False, placeholder="上传后显示状态")
 
-                    # 这段代码有什么用？？？
+
                     kb_select_for_chat = gr.Dropdown(
                         label="为对话选择知识库",
                         choices=current_kbs,
@@ -265,7 +265,7 @@ with gr.Blocks(title="半导体知识问答系统", theme=custom_theme, css=cust
                 with gr.Column(scale=1):
                     gr.Markdown("### ⚙️ 对话设置")
 
-                    # 如何实现选择多个知识库？？？
+
                     kb_dropdown_chat = gr.Dropdown(
                         label="选择知识库进行对话",
                         choices=current_kbs,
@@ -312,7 +312,7 @@ with gr.Blocks(title="半导体知识问答系统", theme=custom_theme, css=cust
             with gr.Row():
                 question_input = gr.Textbox(
                     label="输入半导体相关问题",
-                    placeholder="例如：SY单晶炉的报警类型有哪些？",
+                    placeholder="例如：碳化硅沟槽MOSFET有哪些可靠性问题？",
                     lines=2,
                     elem_id="question-input"
                 )
@@ -331,10 +331,12 @@ with gr.Blocks(title="半导体知识问答系统", theme=custom_theme, css=cust
             gr.Examples(
                 examples=[
                     ["怎样通过显示器上的图标“报警”故障类别？"],
-                    ["如何修改密码？"],
-                    ["用户权限有哪些？"],
-                    ["初始密码是什么？"],
-                    ["如何在当前选择的工艺步上面增加工艺步？"]
+                    ["碳化硅MOSFET的栅氧可靠性受哪些因素影响？"],
+                    ["存内计算芯片是什么？"],
+                    ["华为有哪些先进的AI芯片？"],
+                    ["今天星期几？"],
+                    ["光刻机的作用是什么？"]
+
                 ],
                 inputs=question_input,
                 label="示例问题（点击尝试）"

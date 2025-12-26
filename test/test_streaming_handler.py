@@ -16,7 +16,7 @@ def test_full_pipeline():
 
     # 模拟用户问题
     question = "什么是EUV光刻机？"  # 请确保你的本地知识库里有相关内容，否则会fallback到联网
-    kb_name = "aaa"  # ⚠️ 请修改为你本地真实存在的知识库名字
+    kb_name = "碳化硅MOSFET"  # ⚠️ 请修改为你本地真实存在的知识库名字
 
     print(f"❓ 问题: {question}")
     print(f"📚 知识库: {kb_name}")

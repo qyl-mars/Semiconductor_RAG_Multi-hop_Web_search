@@ -42,9 +42,7 @@ def build_faiss_index(vector_file, index_path, metadata_path):
         # 在 Faiss 的 IndexIVFFlat 训练机制中的硬性规定：
         # 要训练出 n 个聚类中心，训练数据最好是 n 的 39 倍以上。
         # n_vectors >= 39， 走 IndexIVFFlat
-        # 源代码
-        #if nlist >= 1 and n_vectors >= nlist * 39:
-        # qyl,增加10000判断
+
         if n_vectors > 10000 and nlist >= 1 and n_vectors >= nlist * 39:
             print(f"使用 IndexIVFFlat 索引，nlist={nlist}")
             # 创建暴力搜索索引，是创建了一个使用内积作为相似度度量的 Flat 向量索引
@@ -55,8 +53,7 @@ def build_faiss_index(vector_file, index_path, metadata_path):
                 # k-均值聚类，将向量分配到不同的簇（cluster）
                 index.train(vectors)
             index.add(vectors)
-        # 源文件，n_vectors 小于 39，走 IndexFlatIP
-        # qyl：，n_vectors 小于10000
+        # n_vectors 小于10000，走 IndexFlatIP
         else:
             print(f"使用 IndexFlatIP 索引")
             index = faiss.IndexFlatIP(dim)

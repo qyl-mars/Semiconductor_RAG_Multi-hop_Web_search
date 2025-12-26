@@ -3,7 +3,7 @@ import os
 
 index_path = "knowledge_bases/aaa/semantic_chunk.index"
 
-#index_path = r"D:\qiumuxi\demo\Rag\knowledge_bases\aaa\semantic_chunk.index"
+#index_path = r"D:\qiumuxi\demo\Rag\knowledge_bases\碳化硅MOSFET\semantic_chunk.index"
 
 if 0:
     # 打印出 Python 当前站的位置（参考系原点）

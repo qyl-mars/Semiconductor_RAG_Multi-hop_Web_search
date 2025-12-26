@@ -3,7 +3,7 @@ import re
 from lxml import etree
 import chardet
 from config.configs import Config
-from search.rerank import TextRecallRank
+from search.web_search_rerank import TextRecallRank
 import requests
 
 # 1. 联网搜索:总指挥函数
@@ -155,7 +155,7 @@ def web_search_and_rerank(query):
     cfg = Config()
     trr = TextRecallRank(cfg)
 
-    # 3. 根据配置选择排序方式 (逻辑从原 rerank.py 搬运过来)
+    # 3. 根据配置选择排序方式 (逻辑从原 web_search_rerank.py 搬运过来)
     if trr.recall_way == 'keyword':
         bg_text = trr.rank_text_by_keywords(query, raw_data)
     else:

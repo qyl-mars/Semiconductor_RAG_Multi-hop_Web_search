@@ -22,38 +22,36 @@ class Config():
     
     #embedding API 参数 - 用于 text2vec.py
     use_api = True  # 是否使用API而非本地模型
-    api_key = "sk-9cd7a8dd61214b52a869bd3af53a0a1d"
+    api_key = "your-api-key"
     base_url = "https://dashscope.aliyuncs.com/compatible-mode/v1"
     model_name = "text-embedding-v3"
     dimensions = 1024
     batch_size = 10
-    
+
+
     #LLM API 参数 - 用于 rag.py
     # ali qwen
-    llm_api_key = "sk-9cd7a8dd61214b52a869bd3af53a0a1d"  # 与embedding共用同一个key
-    llm_base_url = "https://dashscope.aliyuncs.com/compatible-mode/v1"  # 与embedding共用同一个URL
-    llm_model = "qwen-plus"  # 默认使用的LLM模型
+    #'''
+    use_ali = True
+    if use_ali:
+        llm_api_key = "your-api-key"  # 与embedding共用同一个key
+        llm_base_url = "https://dashscope.aliyuncs.com/compatible-mode/v1"  # 与embedding共用同一个URL
+        llm_model = "qwen-plus"  # 默认使用的LLM模型
 
-    """
-    # gpt
-    llm_api_key = "sk-VI3k06ySl6WOWU16o1uyb7yykSh3rKWBDXJNIfk6TsouHrP1"  # 与embedding共用同一个key
-    llm_base_url = "https://yibuapi.com/v1"  # 与embedding共用同一个URL
-    llm_model = "gpt-5.2-pro"  # 默认使用的LLM模型
-    #"""
 
     # tavily ，联网搜索
-    tavily_api_key = "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"
+    tavily_api_key = "your-api-key"
 
     # Rerank模型
     # 硅基流动
     rerank_model = "BAAI/bge-reranker-v2-m3"
     #其他可选：netease-youdao/bce-reranker-base_v1 \ Qwen/Qwen3-Reranker-4B \Qwen/Qwen3-Reranker-8B
     # Qwen/Qwen3-Reranker-0.6B / Pro/BAAI/bge-reranker-v2-m3
-    rerank_api_key= "sk-dentfpwhfygjdkjhwgltshwiltqcfrvmmkajxvskyfcmgzmr"
+    rerank_api_key= "your-api-key"
 
     # 知识库配置
     kb_base_dir = "knowledge_bases"  # 知识库根目录
-    default_kb = "aaa"  # 默认知识库名称
+    default_kb = "碳化硅MOSFET"  # 默认知识库名称
     
     # 输出目录配置 - 现在用作临时文件目录
     output_dir = "output_files"

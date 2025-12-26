@@ -40,7 +40,7 @@ def semantic_chunk(text: str, chunk_size=800, chunk_overlap=20) -> List[dict]:
                 # 匹配是否是标点符号
                 if re.fullmatch(self.separator, part):
                     if current_chunk:
-                        # 把标点符合符号页加上，原代码没有加标点进去，这样召回显示给用户看时，没有标点的段落读起来会非常累。
+                        # 把标点符合符号页加上，这样召回显示给用户看时，没有标点的段落读起来会非常累。
                         current_chunk.append(part)  # 保留标点，我加的。
                         # 注意这里用join()方法，把current_chunk中的内容拼接成字符串，并添加到chunks列表中。这是为了语义的完整性
                         chunks.append("".join(current_chunk))
@@ -61,51 +61,7 @@ def semantic_chunk(text: str, chunk_size=800, chunk_overlap=20) -> List[dict]:
         paragraph_separator="\n\n"
     )
 
-    ##############---按照段落或长度来分段---#################
-    """" 原来的代码
-    logger.info("执行分段逻辑")
-    # 分段，有问题，没有处理超长段落
-    paragraphs = []
-    current_para = []
-    current_len = 0
-    para_id = 0
 
-    # 按照\n\n来分段落，遍历每个段落
-    # 合并小段落，直到段落长度小于= chunk_size
-    # 问题：如果全文没有\n\n，那么全文就是一个长段落，相当于没有划分，没有处理长段落逻辑。
-    i = 0
-    logger.info("执行分段逻辑")
-    for para in text.split("\n\n"):
-        para = para.strip()
-        para_len = len(para)
-        logger.info(f"段落i={i},长度para_len={para_len}")
-
-        if para_len == 0:
-            continue
-        if current_len + para_len <= chunk_size:
-            current_para.append(para)
-            current_len += para_len
-        else:
-            if current_para:
-                paragraphs.append("\n".join(current_para))
-                logger.info("*" * 60)
-                logger.info(f"分段id:{para_id},存入：{current_para}")
-                para_id += 1
-            if current_len > chunk_size:
-                logger.info("*" * 60)
-                logger.info(f"存入超出段落，chunk_size > {chunk_size}, 内容为: {current_para}")
-
-
-            current_para = [para]
-            current_len = para_len
-        i += 1
-
-    # 如果最后一个段落，没有加入到段落列表中，则加入
-    if current_para:
-        paragraphs.append("\n".join(current_para))
-
-    logger.info(f"i={i},最后一个分段id:para_id={para_id},存入：{current_para}")
-    """
     ##############---按照段落或长度来分段---#################
     logger.info("=" * 60)
     logger.info("执行分段逻辑")
@@ -142,7 +98,7 @@ def semantic_chunk(text: str, chunk_size=800, chunk_overlap=20) -> List[dict]:
     return chunk_data_list
 
 
-# 分段函数，qyl，2025/12/20
+#
 def split_text_into_paragraphs(text: str, chunk_size=800, chunk_overlap=20,separator="。") -> List[str]:
     paragraphs = []
     current_para = []
@@ -151,7 +107,6 @@ def split_text_into_paragraphs(text: str, chunk_size=800, chunk_overlap=20,separ
 
     # 按照\n\n来分段落，遍历每个段落
     # 合并小段落，直到段落长度小于= chunk_size
-    # 问题：如果全文没有\n\n，那么全文就是一个长段落，相当于没有划分，没有处理长段落逻辑。
     i = 0
 
     # 多种段落分隔符的正则表达式
